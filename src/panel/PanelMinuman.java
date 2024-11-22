@@ -59,67 +59,67 @@ public class PanelMinuman extends javax.swing.JPanel {
         jPanel1.revalidate();
 
                 // Tambahkan listener untuk Checkbox dan Spinner setelah initComponents()
-        BBCbox.addActionListener(this::BBCboxActionPerformed);
-        CBCbox.addActionListener(this::CBCboxActionPerformed);
-        FFCbox.addActionListener(this::FFCboxActionPerformed);
-        CNACbox.addActionListener(this::CNACboxActionPerformed);
-        HDCbox.addActionListener(this::HDCboxActionPerformed);
+        IceCapCbox.addActionListener(this::IceCapCboxActionPerformed);
+        IceChocoCbox.addActionListener(this::IceChocoCboxActionPerformed);
+        KelpCbox.addActionListener(this::KelpCboxActionPerformed);
+        CocaColaCbox.addActionListener(this::CocaColaCboxActionPerformed);
+        LeMineCbox.addActionListener(this::LeMineCboxActionPerformed);
 
-        spinnerBeefBurg.addChangeListener(e -> {
-            int value = (Integer) spinnerBeefBurg.getValue();
+        spinnerIceCap.addChangeListener(e -> {
+            int value = (Integer) spinnerIceCap.getValue();
             if (value < 0) {
-                spinnerBeefBurg.setValue(0);  // Pastikan nilai tidak negatif
+                spinnerIceCap.setValue(0);  // Pastikan nilai tidak negatif
             }
             // Pastikan kita memanggil updateCheckBoxFromSpinner() di sini untuk mengupdate status checkbox
-            updateCheckBoxFromSpinner(BBCbox, spinnerBeefBurg, "P001");
+            updateCheckBoxFromSpinner(IceCapCbox, spinnerIceCap, "MI001");
         });
 
         // Menambahkan listener untuk spinnerDblBeef
-        spinnerChezBurg.addChangeListener(e -> {
-            int value = (Integer) spinnerChezBurg.getValue();
+        spinnerIceChoco.addChangeListener(e -> {
+            int value = (Integer) spinnerIceChoco.getValue();
             if (value < 0) {
-                spinnerChezBurg.setValue(0); // Pastikan nilai tidak negatif
+                spinnerIceChoco.setValue(0); // Pastikan nilai tidak negatif
             }
-            updateTableFromSpinner("P002", spinnerChezBurg);
-            updateCheckBoxFromSpinner(CBCbox, spinnerChezBurg, "P002");  // Memperbarui checkbox sesuai dengan nilai spinner
+            updateTableFromSpinner("MI002", spinnerIceChoco);
+            updateCheckBoxFromSpinner(IceChocoCbox, spinnerIceChoco, "MI002");  // Memperbarui checkbox sesuai dengan nilai spinner
         });
 
         // Menambahkan listener untuk spinnerDelxBurg
-        SpinFF.addChangeListener(e -> {
-            int value = (Integer) SpinFF.getValue();
+        spinnerKelp.addChangeListener(e -> {
+            int value = (Integer) spinnerKelp.getValue();
             if (value < 0) {
-                SpinFF.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
+                spinnerKelp.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
             }
-            updateTableFromSpinner("P003", SpinFF);
-            updateCheckBoxFromSpinner(FFCbox, SpinFF, "P003");  // Memperbarui checkbox sesuai dengan nilai spinner
+            updateTableFromSpinner("P003", spinnerKelp);
+            updateCheckBoxFromSpinner(KelpCbox, spinnerKelp, "MI003");  // Memperbarui checkbox sesuai dengan nilai spinner
         });
 
         // Menambahkan listener untuk spinnerChezzBurg
-        SpinnerCNA.addChangeListener(e -> {
-            int value = (Integer) SpinnerCNA.getValue();
+        spinnerCocaCola.addChangeListener(e -> {
+            int value = (Integer) spinnerCocaCola.getValue();
             if (value < 0) {
-                SpinnerCNA.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
+                spinnerCocaCola.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
             }
-            updateTableFromSpinner("P004", SpinnerCNA);
-            updateCheckBoxFromSpinner(CNACbox, SpinnerCNA, "P004");  // Memperbarui checkbox sesuai dengan nilai spinner
+            updateTableFromSpinner("P004", spinnerCocaCola);
+            updateCheckBoxFromSpinner(CocaColaCbox, spinnerCocaCola, "MI004");  // Memperbarui checkbox sesuai dengan nilai spinner
         });
 
         // Menambahkan listener untuk spinnerChikBurg
-        SpinnerHD.addChangeListener(e -> {
-            int value = (Integer) SpinnerHD.getValue();
+        spinnerLeMine.addChangeListener(e -> {
+            int value = (Integer) spinnerLeMine.getValue();
             if (value < 0) {
-                SpinnerHD.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
+                spinnerLeMine.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
             }
-            updateTableFromSpinner("P005", SpinnerHD);
-            updateCheckBoxFromSpinner(HDCbox, SpinnerHD, "P005");  // Memperbarui checkbox sesuai dengan nilai spinner
+            updateTableFromSpinner("P005", spinnerLeMine);
+            updateCheckBoxFromSpinner(LeMineCbox, spinnerLeMine, "M!005");  // Memperbarui checkbox sesuai dengan nilai spinner
         });
 
         // Menetapkan model spinner dengan validasi agar nilai tidak kurang dari 0
-        spinnerBeefBurg.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
-        spinnerChezBurg.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
-        SpinFF.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
-        SpinnerCNA.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
-        SpinnerHD.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
+        spinnerIceCap.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
+        spinnerIceChoco.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
+        spinnerKelp.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
+        spinnerCocaCola.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
+        spinnerLeMine.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
 
         
         // Akses tableModel dari PanelRincian1 yang ada di HalamanUtama
@@ -462,16 +462,17 @@ public class PanelMinuman extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(spinnerCocaCola))
                             .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(LeMineCbox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(spinnerLeMine))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(184, 184, 184)
                         .addComponent(IceChocoCbox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(spinnerIceChoco, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(spinnerIceChoco, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(LeMineCbox)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(spinnerLeMine))
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
