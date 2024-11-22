@@ -17,6 +17,7 @@ public class HalamanUtama extends javax.swing.JFrame {
     private PanelRincian1 panelRincian1;  // Panel rincian pesanan
     private PanelPromo panelPromo;  // Panel untuk promo
     private DefaultTableModel tableModel;
+    private static HalamanUtama instance; // Instance statis    
     
     /**
      * Creates new form HalamanUtama
@@ -300,6 +301,15 @@ public class HalamanUtama extends javax.swing.JFrame {
     public DefaultTableModel getTableModel() {
         return panelRincian1.getTableModel(); // Ambil model tabel dari PanelRincian1
     }
+    
+    // Metode untuk mendapatkan instance Singleton
+    public static HalamanUtama getInstance() {
+        if (instance == null) {
+            instance = new HalamanUtama();
+        }
+        return instance;
+    }
+    
  
     /**
      * @param args the command line arguments

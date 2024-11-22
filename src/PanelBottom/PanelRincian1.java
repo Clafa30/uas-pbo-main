@@ -4,9 +4,10 @@
  */
 package PanelBottom;
 
+import DataDAO.DataDAO;
 import javax.swing.table.DefaultTableModel;
-import panel.PanelPromo;
 import Customer.HalamanUtama;
+import javax.swing.Timer;
 /**
  *
  * @author user
@@ -27,6 +28,7 @@ public class PanelRincian1 extends javax.swing.JPanel {
         tableModel = new DefaultTableModel(columnNames, 0);
 
         initComponents(); // Pastikan panel memiliki UI
+
     }
 
     public static PanelRincian1 getInstance() {
@@ -198,6 +200,17 @@ public class PanelRincian1 extends javax.swing.JPanel {
     public DefaultTableModel getTableModel() {
         return tableModel;
     }
+    
+public void refreshTable() {
+    DataDAO dataDAO = new DataDAO(HalamanUtama.getInstance());
+    dataDAO.loadDataFromKeranjang();
+ 
+    // Setelah data dimuat, beri tahu tableModel untuk memperbarui tampilan
+    DefaultTableModel tableModel = getTableModel();
+    tableModel.fireTableDataChanged();  // Segarkan data di jTable
+    revalidate();  // Refresh layout panel
+    repaint();     // Refresh tampilan komponen visual
+}   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BayarBtn;
