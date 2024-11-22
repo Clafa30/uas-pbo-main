@@ -58,9 +58,9 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jPanel6" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="IceCapCbox" min="-2" max="-2" attributes="0"/>
+                                      <Component id="FFCbox" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="spinnerIceCap" max="32767" attributes="0"/>
+                                      <Component id="spinnerFF" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
@@ -70,43 +70,43 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                      <Component id="KelpCbox" min="-2" max="-2" attributes="0"/>
+                                      <Component id="GNCbox" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="spinnerKelp" min="-2" pref="126" max="-2" attributes="0"/>
+                                      <Component id="spinnerGN" min="-2" pref="126" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="CocaColaCbox" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ORCbox" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="spinnerCocaCola" max="32767" attributes="0"/>
+                                      <Component id="spinnerOR" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="184" max="-2" attributes="0"/>
-                              <Component id="IceChocoCbox" min="-2" max="-2" attributes="0"/>
+                              <Component id="ICCbox" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="spinnerIceChoco" min="-2" pref="129" max="-2" attributes="0"/>
+                              <Component id="spinnerICC" min="-2" pref="129" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="LeMineCbox2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="CKCbox" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="spinnerLeMine2" max="32767" attributes="0"/>
+                                          <Component id="spinnerCK" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jPanel13" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="LeMineCbox" min="-2" max="-2" attributes="0"/>
+                                          <Component id="CACbox" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="spinnerLeMine" max="32767" attributes="0"/>
+                                          <Component id="spinnerCA" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -115,9 +115,9 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <Component id="LeMineCbox1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ICCPCbox" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="spinnerLeMine1" max="32767" attributes="0"/>
+                                      <Component id="spinnerICCP" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -138,11 +138,11 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="IceChocoCbox" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="IceCapCbox" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="ICCbox" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="FFCbox" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="spinnerIceChoco" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="spinnerIceCap" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spinnerICC" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spinnerFF" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
@@ -155,11 +155,11 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="KelpCbox" min="-2" max="-2" attributes="0"/>
-                          <Component id="CocaColaCbox" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="GNCbox" min="-2" max="-2" attributes="0"/>
+                          <Component id="ORCbox" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="spinnerCocaCola" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="spinnerKelp" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spinnerOR" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spinnerGN" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -170,20 +170,20 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="LeMineCbox" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="spinnerLeMine" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="CACbox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spinnerCA" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="LeMineCbox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="spinnerLeMine1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ICCPCbox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spinnerICCP" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="LeMineCbox2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="spinnerLeMine2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CKCbox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="spinnerCK" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -742,53 +742,53 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JCheckBox" name="IceCapCbox">
+            <Component class="javax.swing.JCheckBox" name="FFCbox">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IceCapCboxActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FFCboxActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="IceChocoCbox">
+            <Component class="javax.swing.JCheckBox" name="ICCbox">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IceChocoCboxActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ICCboxActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="KelpCbox">
+            <Component class="javax.swing.JCheckBox" name="GNCbox">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KelpCboxActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GNCboxActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="CocaColaCbox">
+            <Component class="javax.swing.JCheckBox" name="ORCbox">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CocaColaCboxActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ORCboxActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="LeMineCbox">
+            <Component class="javax.swing.JCheckBox" name="CACbox">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LeMineCboxActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CACboxActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JSpinner" name="spinnerLeMine">
+            <Component class="javax.swing.JSpinner" name="spinnerCA">
             </Component>
-            <Component class="javax.swing.JSpinner" name="spinnerCocaCola">
+            <Component class="javax.swing.JSpinner" name="spinnerOR">
             </Component>
-            <Component class="javax.swing.JSpinner" name="spinnerKelp">
+            <Component class="javax.swing.JSpinner" name="spinnerGN">
             </Component>
-            <Component class="javax.swing.JSpinner" name="spinnerIceChoco">
+            <Component class="javax.swing.JSpinner" name="spinnerICC">
             </Component>
-            <Component class="javax.swing.JSpinner" name="spinnerIceCap">
+            <Component class="javax.swing.JSpinner" name="spinnerFF">
             </Component>
-            <Component class="javax.swing.JSpinner" name="spinnerLeMine1">
+            <Component class="javax.swing.JSpinner" name="spinnerICCP">
             </Component>
-            <Component class="javax.swing.JCheckBox" name="LeMineCbox1">
+            <Component class="javax.swing.JCheckBox" name="ICCPCbox">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LeMineCbox1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ICCPCboxActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JSpinner" name="spinnerLeMine2">
+            <Component class="javax.swing.JSpinner" name="spinnerCK">
             </Component>
-            <Component class="javax.swing.JCheckBox" name="LeMineCbox2">
+            <Component class="javax.swing.JCheckBox" name="CKCbox">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LeMineCbox2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CKCboxActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

@@ -7,7 +7,13 @@ package PanelBottom;
 import DataDAO.DataDAO;
 import javax.swing.table.DefaultTableModel;
 import Customer.HalamanUtama;
-import javax.swing.Timer;
+import Login.DbConnection;
+import PanelBottom.PanelRincian1;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 /**
  *
  * @author user
@@ -20,15 +26,11 @@ public class PanelRincian1 extends javax.swing.JPanel {
     /**
      * Creates new form PanelRincian1
      */
-    private PanelRincian1() {
-        this.halamanUtama = halamanUtama; // Simpan referensi ke HalamanUtama
-
-        // Inisialisasi model tabel
-        String[] columnNames = {"ID Menu", "Nama Menu", "Harga", "Jumlah", "Total"};
-        tableModel = new DefaultTableModel(columnNames, 0);
-
+    public PanelRincian1() {
         initComponents(); // Pastikan panel memiliki UI
-
+        
+        tableModel = new DefaultTableModel(new Object[][]{}, new String[]{"Menu ID", "Nama Menu", "Harga", "Jumlah", "Total"});
+        jTable1.setModel(tableModel);
     }
 
     public static PanelRincian1 getInstance() {
@@ -201,16 +203,64 @@ public class PanelRincian1 extends javax.swing.JPanel {
         return tableModel;
     }
     
+    private void loadData(String menuId, javax.swing.JSpinner spinner) {
+    try (Connection conn = DbConnection.getConnection()) {
+        String query = "SELECT * FROM menu WHERE menu_id = ?";
+        PreparedStatement pstmt = conn.prepareStatement(query);
+        pstmt.setString(1, menuId);
+        ResultSet rs = pstmt.executeQuery();
+
+        if (rs.next()) {
+            String namaMenu = rs.getString("nama_menu");
+            double harga = rs.getDouble("harga");
+            int jumlah = (Integer) spinner.getValue();
+
+            DataDAO dataDAO = new DataDAO(halamanUtama);
+            if (jumlah > 0) {
+                dataDAO.addToKeranjang(menuId, jumlah, harga);  // Menambahkan item ke keranjang
+            } else {
+                dataDAO.removeFromKeranjang(menuId);  // Menghapus item dari keranjang
+            }
+
+            // Panggil refreshTable() untuk memastikan data di PanelRincian1 terupdate
+            HalamanUtama.getInstance().getPanelRincian1().refreshTable();  // Memastikan PanelRincian1 di-refresh
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+public void loadDataFromKeranjang() {
+    try (Connection conn = DbConnection.getConnection()) {
+        String query = "SELECT * FROM keranjang";
+        PreparedStatement pstmt = conn.prepareStatement(query);
+        ResultSet rs = pstmt.executeQuery();
+
+        DefaultTableModel tableModel = HalamanUtama.getInstance().getPanelRincian1().getTableModel();
+        tableModel.setRowCount(0);  // Kosongkan tabel sebelumnya
+
+        while (rs.next()) {
+            String menuId = rs.getString("menu_id");
+            String namaMenu = rs.getString("nama_menu");
+            double harga = rs.getDouble("harga");
+            int jumlah = rs.getInt("jumlah");
+            double total = rs.getDouble("total");
+
+            System.out.println("Data: " + menuId + ", " + namaMenu + ", " + harga + ", " + jumlah + ", " + total);
+
+            tableModel.addRow(new Object[]{menuId, namaMenu, harga, jumlah, total});
+        }
+        tableModel.fireTableDataChanged();  // Notify tabel untuk refresh
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+    
 public void refreshTable() {
     DataDAO dataDAO = new DataDAO(HalamanUtama.getInstance());
     dataDAO.loadDataFromKeranjang();
- 
-    // Setelah data dimuat, beri tahu tableModel untuk memperbarui tampilan
-    DefaultTableModel tableModel = getTableModel();
-    tableModel.fireTableDataChanged();  // Segarkan data di jTable
-    revalidate();  // Refresh layout panel
-    repaint();     // Refresh tampilan komponen visual
-}   
+    System.out.println("Tabel di PanelRincian1 diperbarui!");
+}
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BayarBtn;

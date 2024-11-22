@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2024 at 01:45 PM
+-- Generation Time: Nov 22, 2024 at 06:09 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -57,30 +57,6 @@ CREATE TABLE `keranjang` (
   `jumlah` int(11) DEFAULT NULL,
   `total` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `keranjang`
---
-
-INSERT INTO `keranjang` (`keranjang_id`, `menu_id`, `nama_menu`, `harga`, `jumlah`, `total`) VALUES
-(1, 'P001', 'Beef Burger', 20000.00, 2, 40000.00),
-(2, 'P001', 'Beef Burger', 20000.00, 3, 60000.00),
-(3, 'P001', 'Beef Burger', 20000.00, 3, 60000.00),
-(4, 'P001', 'Beef Burger', 20000.00, 3, 60000.00),
-(5, 'P001', 'Beef Burger', 20000.00, 3, 60000.00),
-(6, 'P001', 'Beef Burger', 20000.00, 3, 60000.00),
-(7, 'P001', 'Beef Burger', 20000.00, 1, 20000.00),
-(8, 'P001', 'Beef Burger', 20000.00, 1, 20000.00),
-(9, 'P001', 'Beef Burger', 20000.00, 4, 80000.00),
-(10, 'P001', 'Beef Burger', 20000.00, 4, 80000.00),
-(11, 'P001', 'Beef Burger', 20000.00, 4, 80000.00),
-(12, 'P001', 'Beef Burger', 20000.00, 4, 80000.00),
-(13, 'P001', 'Beef Burger', 20000.00, 2, 40000.00),
-(14, 'P001', 'Beef Burger', 20000.00, 3, 60000.00),
-(15, 'P001', 'Beef Burger', 20000.00, 2, 40000.00),
-(16, 'P005', 'HotDog', 17000.00, 3, 51000.00),
-(17, 'P001', 'Beef Burger', 20000.00, 3, 60000.00),
-(18, 'P001', 'Beef Burger', 20000.00, 2, 40000.00);
 
 -- --------------------------------------------------------
 
@@ -218,7 +194,7 @@ ALTER TABLE `pelanggan`
 -- AUTO_INCREMENT for table `keranjang`
 --
 ALTER TABLE `keranjang`
-  MODIFY `keranjang_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `keranjang_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
 
 --
 -- Constraints for dumped tables

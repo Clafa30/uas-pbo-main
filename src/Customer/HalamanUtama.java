@@ -25,12 +25,14 @@ public class HalamanUtama extends javax.swing.JFrame {
      
     public HalamanUtama() {
         initComponents();
-
-        // Inisialisasi PanelRincian1 dan PanelPromo
-        panelRincian1 = PanelRincian1.getInstance();  // Gunakan metode Singleton
+        // Inisialisasi PanelRincian1
+        panelRincian1 = new PanelRincian1();
+        
+        // Inisialisasi PanelPromo dan berikan referensi ke HalamanUtama
+        panelPromo = new PanelPromo(this, panelRincian1); 
 
         mainContent.removeAll();
-        panelPromo = new PanelPromo(this);  // Kirim panelRincian1 ke PanelPromo
+        panelPromo = new PanelPromo(this, panelRincian1);  // Kirim panelRincian1 ke PanelPromo
         mainContent.add(panelPromo);
         mainContent.revalidate();
         mainContent.repaint();
@@ -42,6 +44,7 @@ public class HalamanUtama extends javax.swing.JFrame {
         bottom.repaint();
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -262,7 +265,7 @@ public class HalamanUtama extends javax.swing.JFrame {
 
     private void lbMakananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbMakananMouseClicked
         mainContent.removeAll();
-        PanelMakanan panelMakanan = new PanelMakanan(panelRincian1);
+        PanelMakanan panelMakanan = new PanelMakanan(this, panelRincian1);
         mainContent.add(panelMakanan);
         mainContent.revalidate();
         mainContent.repaint();
@@ -271,7 +274,7 @@ public class HalamanUtama extends javax.swing.JFrame {
 
     private void lbPromoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbPromoMouseClicked
         mainContent.removeAll();
-        panelPromo = new PanelPromo(this);  // Kirim panelRincian1 ke PanelPromo
+        panelPromo = new PanelPromo(this, panelRincian1);  // Kirim panelRincian1 ke PanelPromo
         mainContent.add(panelPromo);
         mainContent.revalidate();
         mainContent.repaint();
@@ -279,7 +282,7 @@ public class HalamanUtama extends javax.swing.JFrame {
 
     private void lbMinumanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbMinumanMouseClicked
         mainContent.removeAll();
-        PanelMinuman panelMinuman = new PanelMinuman(this);
+        PanelMinuman panelMinuman = new PanelMinuman(this, panelRincian1);
         mainContent.add(panelMinuman);
         mainContent.revalidate();
         mainContent.repaint();
@@ -287,15 +290,15 @@ public class HalamanUtama extends javax.swing.JFrame {
 
     private void lbLainyaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLainyaMouseClicked
         mainContent.removeAll();
-        PanelLainnya panelLainnya = new PanelLainnya(this);
+        PanelLainnya panelLainnya = new PanelLainnya(this, panelRincian1);
         mainContent.add(panelLainnya);
         mainContent.revalidate();
         mainContent.repaint();
     }//GEN-LAST:event_lbLainyaMouseClicked
 
     public PanelRincian1 getPanelRincian1() {
-        return panelRincian1;
-    }    
+        return this.panelRincian1;  // Pastikan panelRincian1 sudah diinisialisasi dengan benar
+    }  
     
     // Tambahkan getter untuk mengakses model tabel dari PanelRincian1
     public DefaultTableModel getTableModel() {

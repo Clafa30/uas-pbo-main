@@ -4,10 +4,10 @@
  */
 package panel;
 
+import DataDAO.DataDAO;
 import Customer.HalamanUtama;
 import Login.DbConnection;
 import PanelBottom.PanelRincian1;
-import java.awt.BorderLayout;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,8 +17,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import javax.swing.JCheckBox;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.table.DefaultTableModel;
@@ -27,135 +27,115 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author rolis
  */
+
 public class PanelMakanan extends javax.swing.JPanel {
     private int lastMouseY;
     private HalamanUtama halamanUtama;
-    private JTable jTable; // Variabel untuk tabel
     private DefaultTableModel tableModel; // Model data untuk tabel
-       
+    private JTable jTable; // Variabel untuk tabel
+    private PanelRincian1 panelRincian1;
+    private DataDAO dataDAO;
+    
     /**
      * Creates new form TesPanel
      */
-    public PanelMakanan(PanelRincian1 halamanUtama) {
+    public PanelMakanan(HalamanUtama halamanUtama, PanelRincian1 panelRincian11) { 
         initComponents();  // Inisialisasi komponen GUI
-        menu.getVerticalScrollBar().setUnitIncrement(15); // Atur sensitivitas vertikal
-        jPanel1.setPreferredSize(new Dimension(menu.getWidth(), 2000)); // Contoh tinggi 2000
-        jPanel1.revalidate();
-        jPanel1.repaint();
-
-        // Tambahkan listener untuk Checkbox dan Spinner setelah initComponents()
-        BeefBurgCbox.addActionListener(this::BeefBurgCboxActionPerformed);
-        DblBeefBurgerCbox.addActionListener(this::DblBeefBurgerCboxActionPerformed);
-        DelxBurgCbox.addActionListener(this::DelxBurgCboxActionPerformed);
-        ChezzBurgCbox.addActionListener(this::ChezzBurgCboxActionPerformed);
-        ChikBurgCbox.addActionListener(this::ChikBurgCboxActionPerformed);
-        AyamNasiCbox.addActionListener(this::AyamNasiCboxActionPerformed);
-
-    // Menambahkan listener untuk spinnerBeefBurg
-    spinnerBeefBurg.addChangeListener(e -> {
-        int value = (Integer) spinnerBeefBurg.getValue();
-        if (value < 0) {
-            spinnerBeefBurg.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
-        }
-        updateTableFromSpinner("M001", spinnerBeefBurg);
-        updateCheckBoxFromSpinner(BeefBurgCbox, spinnerBeefBurg);  // Memperbarui checkbox sesuai dengan nilai spinner
-    });
-
-    // Menambahkan listener untuk spinnerDblBeef
-    spinnerDblBeef.addChangeListener(e -> {
-        int value = (Integer) spinnerDblBeef.getValue();
-        if (value < 0) {
-            spinnerDblBeef.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
-        }
-        updateTableFromSpinner("M002", spinnerDblBeef);
-        updateCheckBoxFromSpinner(DblBeefBurgerCbox, spinnerDblBeef);  // Memperbarui checkbox sesuai dengan nilai spinner
-    });
-
-    // Menambahkan listener untuk spinnerDelxBurg
-    spinnerDelxBurg.addChangeListener(e -> {
-        int value = (Integer) spinnerDelxBurg.getValue();
-        if (value < 0) {
-            spinnerDelxBurg.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
-        }
-        updateTableFromSpinner("M003", spinnerDelxBurg);
-        updateCheckBoxFromSpinner(DelxBurgCbox, spinnerDelxBurg);  // Memperbarui checkbox sesuai dengan nilai spinner
-    });
-
-    // Menambahkan listener untuk spinnerChezzBurg
-    spinnerChezzBurg.addChangeListener(e -> {
-        int value = (Integer) spinnerChezzBurg.getValue();
-        if (value < 0) {
-            spinnerChezzBurg.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
-        }
-        updateTableFromSpinner("M004", spinnerChezzBurg);
-        updateCheckBoxFromSpinner(ChezzBurgCbox, spinnerChezzBurg);  // Memperbarui checkbox sesuai dengan nilai spinner
-    });
-
-    // Menambahkan listener untuk spinnerChikBurg
-    spinnerChikBurg.addChangeListener(e -> {
-        int value = (Integer) spinnerChikBurg.getValue();
-        if (value < 0) {
-            spinnerChikBurg.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
-        }
-        updateTableFromSpinner("M005", spinnerChikBurg);
-        updateCheckBoxFromSpinner(ChikBurgCbox, spinnerChikBurg);  // Memperbarui checkbox sesuai dengan nilai spinner
-    });
-
-    // Menambahkan listener untuk spinnerAyamNasi
-    spinnerAyamNasi.addChangeListener(e -> {
-        int value = (Integer) spinnerAyamNasi.getValue();
-        if (value < 0) {
-            spinnerAyamNasi.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
-        }
-        updateTableFromSpinner("M006", spinnerAyamNasi);
-        updateCheckBoxFromSpinner(AyamNasiCbox, spinnerAyamNasi);  // Memperbarui checkbox sesuai dengan nilai spinner
-    });
         
+        this.halamanUtama = halamanUtama;
+        this.panelRincian1 = panelRincian1;
+        // Inisialisasi objek DataDAO
+        this.dataDAO = new DataDAO(halamanUtama);  // Pemberian parameter halamanUtama (jika diperlukan)
+        
+        if (panelRincian1 != null) {
+            panelRincian1.refreshTable();
+        } else {
+            System.out.println("PanelRincian1 belum diinisialisasi!");
+        }
+         
+        menu.getVerticalScrollBar().setUnitIncrement(15); // Atur sensitivitas vertikal
+        jPanel1.setPreferredSize(new Dimension(menu.getWidth(), 800)); // Contoh tinggi 2000
+        jPanel1.revalidate();
+
+                // Tambahkan listener untuk Checkbox dan Spinner setelah initComponents()
+        BBCbox.addActionListener(this::BBCboxActionPerformed);
+        CBCbox.addActionListener(this::CBCboxActionPerformed);
+        FFCbox.addActionListener(this::FFCboxActionPerformed);
+        CNACbox.addActionListener(this::CNACboxActionPerformed);
+        HDCbox.addActionListener(this::HDCboxActionPerformed);
+
+        spinnerBeefBurg.addChangeListener(e -> {
+            int value = (Integer) spinnerBeefBurg.getValue();
+            if (value < 0) {
+                spinnerBeefBurg.setValue(0);  // Pastikan nilai tidak negatif
+            }
+            // Pastikan kita memanggil updateCheckBoxFromSpinner() di sini untuk mengupdate status checkbox
+            updateCheckBoxFromSpinner(BBCbox, spinnerBeefBurg, "P001");
+        });
+
+        // Menambahkan listener untuk spinnerDblBeef
+        spinnerChezBurg.addChangeListener(e -> {
+            int value = (Integer) spinnerChezBurg.getValue();
+            if (value < 0) {
+                spinnerChezBurg.setValue(0); // Pastikan nilai tidak negatif
+            }
+            updateTableFromSpinner("P002", spinnerChezBurg);
+            updateCheckBoxFromSpinner(CBCbox, spinnerChezBurg, "P002");  // Memperbarui checkbox sesuai dengan nilai spinner
+        });
+
+        // Menambahkan listener untuk spinnerDelxBurg
+        SpinFF.addChangeListener(e -> {
+            int value = (Integer) SpinFF.getValue();
+            if (value < 0) {
+                SpinFF.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
+            }
+            updateTableFromSpinner("P003", SpinFF);
+            updateCheckBoxFromSpinner(FFCbox, SpinFF, "P003");  // Memperbarui checkbox sesuai dengan nilai spinner
+        });
+
+        // Menambahkan listener untuk spinnerChezzBurg
+        SpinnerCNA.addChangeListener(e -> {
+            int value = (Integer) SpinnerCNA.getValue();
+            if (value < 0) {
+                SpinnerCNA.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
+            }
+            updateTableFromSpinner("P004", SpinnerCNA);
+            updateCheckBoxFromSpinner(CNACbox, SpinnerCNA, "P004");  // Memperbarui checkbox sesuai dengan nilai spinner
+        });
+
+        // Menambahkan listener untuk spinnerChikBurg
+        SpinnerHD.addChangeListener(e -> {
+            int value = (Integer) SpinnerHD.getValue();
+            if (value < 0) {
+                SpinnerHD.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
+            }
+            updateTableFromSpinner("P005", SpinnerHD);
+            updateCheckBoxFromSpinner(HDCbox, SpinnerHD, "P005");  // Memperbarui checkbox sesuai dengan nilai spinner
+        });
+
         // Menetapkan model spinner dengan validasi agar nilai tidak kurang dari 0
         spinnerBeefBurg.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
-        spinnerDblBeef.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
-        spinnerDelxBurg.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
-        spinnerChezzBurg.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
-        spinnerChikBurg.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
-        spinnerAyamNasi.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spinnerChezBurg.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
+        SpinFF.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
+        SpinnerCNA.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
+        SpinnerHD.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1)); 
+
         
-        // Pastikan komponen-komponen sudah terinisialisasi sebelum memodifikasi tableModel
-        jPanel1.setPreferredSize(new Dimension(menu.getWidth(), 800)); // Contoh tinggi 2000
-        jPanel1.revalidate();     
+        // Akses tableModel dari PanelRincian1 yang ada di HalamanUtama
+        PanelRincian1 panelRincian1 = PanelRincian1.getInstance();
+            if (panelRincian1 != null) {
+                tableModel = panelRincian1.getTableModel();  // Ambil DefaultTableModel dari PanelRincian1
+                System.out.println("Model tabel berhasil diakses!");
+            } else {
+                System.out.println("PanelRincian1 tidak ditemukan di HalamanUtama");
 
-        // Inisialisasi tableModel setelah komponen terinisialisasi
-        tableModel = new DefaultTableModel(new Object[][]{}, new String[]{"Menu ID", "Nama Menu", "Kategori", "Harga"});
-
-        // Jika jTable belum diinisialisasi secara otomatis, lakukan inisialisasi manual:
-        if (jTable == null) {
-            jTable = new javax.swing.JTable();  // Membuat instance jTable jika belum ada
+            // Ambil PanelRincian1 dari HalamanUtama
+            panelRincian1 = PanelRincian1.getInstance();
+            if (panelRincian1 != null) {
+                tableModel = panelRincian1.getTableModel();
+            }
         }
-        jTable.setModel(tableModel);  // Menghubungkan tableModel dengan jTable
-
-        // Tambahkan jTable ke dalam scrollPane dan layout panel (jika perlu)
-        JScrollPane scrollPane = new JScrollPane(jTable);
-        add(scrollPane, BorderLayout.CENTER);  // Menambahkan jTable ke panel
-    }
-    
-    private void customizeScrollPanel() {
-        menu.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        menu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-        menu.getHorizontalScrollBar().setUI(null); // Hapus UI scrollbar horizontal
-        menu.getVerticalScrollBar().setUI(null);   // Hapus UI scrollbar vertikal
-
-        // Tambahkan MouseListener ke jPanel1
-        jPanel1.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent evt) {
-                jPanel1MousePressed(evt);
-            }
-        });
-
-        jPanel1.addMouseMotionListener(new MouseAdapter() {
-            public void mouseDragged(MouseEvent evt) {
-                jPanel1MouseDragged(evt);
-            }
-        });
-}
+    }   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -895,106 +875,126 @@ public class PanelMakanan extends javax.swing.JPanel {
     private void AyamNasiCbox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AyamNasiCbox3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AyamNasiCbox3ActionPerformed
-    
-// Method untuk memperbarui checkbox berdasarkan nilai spinner
-private void updateCheckBoxFromSpinner(javax.swing.JCheckBox checkBox, javax.swing.JSpinner spinner) {
-        int value = (Integer) spinner.getValue();
-        checkBox.setSelected(value > 0);
-    }
-      
-// Memuat data ke dalam tabel berdasarkan menuId dan nilai spinner
-private void loadData(String menuId, javax.swing.JSpinner spinner) {
-    try (Connection conn = DbConnection.getConnection()) {
-        String query = "SELECT * FROM menu WHERE menu_id = ?";
-        PreparedStatement pstmt = conn.prepareStatement(query);
-        pstmt.setString(1, menuId); // menu_id dari database
-        ResultSet rs = pstmt.executeQuery();
 
-        // Cek apakah ada data yang ditemukan
-        if (rs.next()) {
-            String namaMenu = rs.getString("nama_menu");
-            double harga = rs.getDouble("harga");
-            int jumlah = (Integer) spinner.getValue(); // Mengambil jumlah dari spinner
-            double total = harga * jumlah;
+private void customizeScrollPanel() {
+        menu.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        menu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        menu.getHorizontalScrollBar().setUI(null); // Hapus UI scrollbar horizontal
+        menu.getVerticalScrollBar().setUI(null);   // Hapus UI scrollbar vertikal
 
-            DefaultTableModel tableModel = halamanUtama.getTableModel();
-            boolean menuExists = false;
-
-            // Periksa apakah menu sudah ada di tabel
-            for (int i = 0; i < tableModel.getRowCount(); i++) {
-                if (tableModel.getValueAt(i, 0).equals(menuId)) {
-                    // Jika menu sudah ada, update jumlah dan total
-                    tableModel.setValueAt(jumlah, i, 3);  // Update jumlah
-                    tableModel.setValueAt(total, i, 4);   // Update total
-                    menuExists = true;
-                    break;
-                }
+        // Tambahkan MouseListener ke jPanel1
+        jPanel1.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent evt) {
+                jPanel1MousePressed(evt);
             }
+        });
 
-            // Jika menu belum ada, tambahkan data baru
-            if (!menuExists && jumlah > 0) {
-                tableModel.addRow(new Object[]{menuId, namaMenu, harga, jumlah, total});
+        jPanel1.addMouseMotionListener(new MouseAdapter() {
+            public void mouseDragged(MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });      
+    }
+    
+private void loadData(String menuId, javax.swing.JSpinner spinner) {
+        try (Connection conn = DbConnection.getConnection()) {
+            String query = "SELECT * FROM menu WHERE menu_id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, menuId);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                String namaMenu = rs.getString("nama_menu");
+                double harga = rs.getDouble("harga");
+                int jumlah = (Integer) spinner.getValue();
+
+                DataDAO dataDAO = new DataDAO(halamanUtama);
+                dataDAO.addToKeranjang(menuId, jumlah, harga);
+                dataDAO.loadDataFromKeranjang();  // Memastikan data di-refresh
+                panelRincian1.refreshTable();     // Segarkan tabel
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+private void removeFromDatabase(String menuId) {
+    // Menggunakan try-with-resources untuk memastikan koneksi dan statement ditutup secara otomatis
+    try (Connection conn = DbConnection.getConnection()) {
+        
+        // Query SQL untuk menghapus data berdasarkan menuId
+        String query = "DELETE FROM keranjang WHERE menu_id = ?";
+        
+        // Membuat prepared statement
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            // Menetapkan parameter query
+            pstmt.setString(1, menuId);
+            
+            // Eksekusi update query (karena ini adalah perintah DELETE)
+            int rowsAffected = pstmt.executeUpdate();
+            
+            // Cek apakah ada baris yang terpengaruh
+            if (rowsAffected > 0) {
+                System.out.println("Data berhasil dihapus untuk Menu ID: " + menuId);
+            } else {
+                System.out.println("Tidak ada data yang ditemukan untuk Menu ID: " + menuId);
             }
         }
     } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Error loading data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        // Menangani kesalahan SQL jika terjadi
+        System.out.println("Error saat menghapus data dari database: " + e.getMessage());
     }
 }
-
-// Method untuk menghapus data berdasarkan menuId
+    
 private void removeData(String menuId) {
-    DefaultTableModel tableModel = halamanUtama.getTableModel();
+    // Mendapatkan model tabel dari PanelRincian1
+    PanelRincian1 panelRincian1 = PanelRincian1.getInstance();
+    DefaultTableModel tableModel = panelRincian1.getTableModel();
+
+    // Loop untuk menemukan baris yang sesuai dengan menuId
     for (int i = 0; i < tableModel.getRowCount(); i++) {
-        if (tableModel.getValueAt(i, 0).equals(menuId)) {
-            tableModel.removeRow(i);  // Menghapus baris berdasarkan menuId
-            break;
+        if (tableModel.getValueAt(i, 0).equals(menuId)) { // Cek jika menuId pada kolom pertama
+            tableModel.removeRow(i);  // Hapus baris yang sesuai
+            break; // Hentikan loop setelah menghapus
         }
     }
+
+    // Segarkan data tabel
+    tableModel.fireTableDataChanged();
+    System.out.println("Baris dengan menuId: " + menuId + " dihapus dari tabel.");
 }
 
-// Method untuk memperbarui checkbox berdasarkan nilai spinner
-private void updateCheckBoxFromSpinner(javax.swing.JCheckBox checkBox, javax.swing.JSpinner spinner, String menuId) {
+public void updateCheckBoxFromSpinner(JCheckBox checkBox, JSpinner spinner, String menuId) {
     int value = (Integer) spinner.getValue();
-    if (value > 0) {
-        checkBox.setSelected(true);
-        loadData(menuId, spinner);  // Memuat data ke dalam tabel
-    } else {
-        checkBox.setSelected(false);
-        removeData(menuId);  // Menghapus data dari tabel
-    }
-}
-
-// Memperbarui tabel dari perubahan nilai spinner
-private void updateTableFromSpinner(String menuId, javax.swing.JSpinner spinner) {
-    int jumlah = (Integer) spinner.getValue();
     
-    // Jika jumlah > 0, tambahkan atau update data ke tabel
-    if (jumlah > 0) {
-        loadData(menuId, spinner);  // Memuat data ke dalam tabel
-    } else {
-        removeData(menuId);  // Menghapus data jika jumlahnya 0
+    System.out.println("Spinner Value: " + value);  // Debugging
+    
+    if (value >= 1) {
+        checkBox.setSelected(true);  // Centang checkbox jika jumlah > 0
+        loadData(menuId, spinner);   // Memuat data ke dalam tabel jika jumlah > 0
+    } else if (value == 0) {
+        checkBox.setSelected(false);  // Uncheck checkbox jika jumlah = 0
+        removeFromDatabase(menuId);   // Hapus data dari database
+        removeData(menuId);           // Hapus data dari tabel PanelRincian1
     }
 }
 
-// Mendapatkan spinner terkait berdasarkan menuId
-// Mendapatkan spinner terkait berdasarkan menuId
-private javax.swing.JSpinner getSpinnerForMenu(String menuId) {
-    switch (menuId) {
-        case "M001":
-            return spinnerBeefBurg;
-        case "M002":
-            return spinnerDblBeef;
-        case "M003":
-            return spinnerDelxBurg;
-        case "M004":
-            return spinnerChezzBurg;
-        case "M005":
-            return spinnerChikBurg;
-        case "M006":
-            return spinnerAyamNasi;
-        default:
-            return null;
+public void updateTableFromSpinner(String menuId, JSpinner spinner) {
+    int value = (Integer) spinner.getValue();
+
+    if (value >= 1) {
+        // Update keranjang di database
+        dataDAO.updateKeranjang(menuId, value); 
+        System.out.println("Jumlah di keranjang diperbarui untuk menu ID: " + menuId);
+    } else {
+        // Hapus data dari database dan tabel jika jumlah = 0
+        dataDAO.removeFromKeranjang(menuId);
+        removeData(menuId);  // Hapus baris yang terkait dengan menuId dari tabel
+        System.out.println("Item dihapus dari keranjang untuk menu ID: " + menuId);
     }
+
+    // Memuat data ulang keranjang dari database ke tabel (jika perlu)
+    dataDAO.loadDataFromKeranjang(); // Jika ingin memuat ulang semua data ke tabel
 }
 
 
