@@ -68,22 +68,22 @@ public class PanelLainnya extends javax.swing.JPanel {
         CKCbox.addActionListener(this::ORCboxActionPerformed);
 
         FFCbox.addChangeListener(e -> {
-            int value = (Integer) spinnerBeefBurg.getValue();
+            int value = (Integer) spinnerFF.getValue();
             if (value < 0) {
-                spinnerBeefBurg.setValue(0);  // Pastikan nilai tidak negatif
+                spinnerFF.setValue(0);  // Pastikan nilai tidak negatif
             }
             // Pastikan kita memanggil updateCheckBoxFromSpinner() di sini untuk mengupdate status checkbox
-            updateCheckBoxFromSpinner(BBCbox, spinnerBeefBurg, "P001");
+            updateCheckBoxFromSpinner(FFCbox, spinnerFF, "P001");
         });
 
         // Menambahkan listener untuk spinnerDblBeef
-        FFCbox.addChangeListener(e -> {
-            int value = (Integer) spinnerChezBurg.getValue();
+        ICCbox.addChangeListener(e -> {
+            int value = (Integer) spinnerICC.getValue();
             if (value < 0) {
-                spinnerChezBurg.setValue(0); // Pastikan nilai tidak negatif
+                spinnerICC.setValue(0); // Pastikan nilai tidak negatif
             }
-            updateTableFromSpinner("P002", spinnerChezBurg);
-            updateCheckBoxFromSpinner(CBCbox, spinnerChezBurg, "P002");  // Memperbarui checkbox sesuai dengan nilai spinner
+            updateTableFromSpinner("P002", spinnerICC);
+            updateCheckBoxFromSpinner(ICCbox, spinnerICC, "P002");  // Memperbarui checkbox sesuai dengan nilai spinner
         });
 
         // Menambahkan listener untuk spinnerDelxBurg
