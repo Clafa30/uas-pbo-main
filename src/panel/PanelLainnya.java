@@ -73,47 +73,65 @@ public class PanelLainnya extends javax.swing.JPanel {
                 spinnerFF.setValue(0);  // Pastikan nilai tidak negatif
             }
             // Pastikan kita memanggil updateCheckBoxFromSpinner() di sini untuk mengupdate status checkbox
-            updateCheckBoxFromSpinner(FFCbox, spinnerFF, "P001");
+            updateCheckBoxFromSpinner(FFCbox, spinnerFF, "P003");
         });
 
-        // Menambahkan listener untuk spinnerDblBeef
+        // Menambahkan listener untuk spinnerICC
         ICCbox.addChangeListener(e -> {
             int value = (Integer) spinnerICC.getValue();
             if (value < 0) {
                 spinnerICC.setValue(0); // Pastikan nilai tidak negatif
             }
-            updateTableFromSpinner("P002", spinnerICC);
-            updateCheckBoxFromSpinner(ICCbox, spinnerICC, "P002");  // Memperbarui checkbox sesuai dengan nilai spinner
+            updateTableFromSpinner("L001", spinnerICC);
+            updateCheckBoxFromSpinner(ICCbox, spinnerICC, "L001");  // Memperbarui checkbox sesuai dengan nilai spinner
         });
 
-        // Menambahkan listener untuk spinnerDelxBurg
-        FFCbox.addChangeListener(e -> {
-            int value = (Integer) SpinFF.getValue();
-            if (value < 0) {
-                SpinFF.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
-            }
-            updateTableFromSpinner("P003", SpinFF);
-            updateCheckBoxFromSpinner(FFCbox, SpinFF, "P003");  // Memperbarui checkbox sesuai dengan nilai spinner
-        });
-
-        // Menambahkan listener untuk spinnerChezzBurg
-        FFCbox.addChangeListener(e -> {
+        // Menambahkan listener untuk spinnerGN
+        GNCbox.addChangeListener(e -> {
             int value = (Integer) spinnerGN.getValue();
             if (value < 0) {
                 spinnerGN.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
             }
-            updateTableFromSpinner("P004", SpinnerCNA);
-            updateCheckBoxFromSpinner(CNACbox, SpinnerCNA, "P004");  // Memperbarui checkbox sesuai dengan nilai spinner
+            updateTableFromSpinner("L002", spinnerGN);
+            updateCheckBoxFromSpinner(GNCbox, spinnerGN, "L002");  // Memperbarui checkbox sesuai dengan nilai spinner
         });
 
-        // Menambahkan listener untuk spinnerChikBurg
-        FFCbox.addChangeListener(e -> {
-            int value = (Integer) spinnerGN.getValue();
+        // Menambahkan listener untuk spinnerOR
+        ORCbox.addChangeListener(e -> {
+            int value = (Integer) spinnerOR.getValue();
             if (value < 0) {
-                spinnerGN.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
+                spinnerOR.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
             }
-            updateTableFromSpinner("P005", SpinnerHD);
-            updateCheckBoxFromSpinner(HDCbox, SpinnerHD, "P005");  // Memperbarui checkbox sesuai dengan nilai spinner
+            updateTableFromSpinner("L003", spinnerOR);
+            updateCheckBoxFromSpinner(ORCbox, spinnerOR, "L003");  // Memperbarui checkbox sesuai dengan nilai spinner
+        });
+
+        // Menambahkan listener untuk spinnerCA
+        CACbox.addChangeListener(e -> {
+            int value = (Integer) spinnerCA.getValue();
+            if (value < 0) {
+                spinnerCA.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
+            }
+            updateTableFromSpinner("P004", spinnerCA);
+            updateCheckBoxFromSpinner(CACbox, spinnerCA, "P004");  // Memperbarui checkbox sesuai dengan nilai spinner
+        });
+        
+        ICCPCbox.addChangeListener(e -> {
+            int value = (Integer) spinnerICCP.getValue();
+            if (value < 0) {
+                spinnerICCP.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
+            }
+            updateTableFromSpinner("L004", spinnerICCP);
+            updateCheckBoxFromSpinner(ICCPCbox, spinnerICCP, "L004");  // Memperbarui checkbox sesuai dengan nilai spinner
+        });
+        
+        CKCbox.addChangeListener(e -> {
+            int value = (Integer) spinnerCK.getValue();
+            if (value < 0) {
+                spinnerCK.setValue(0);  // Atur nilai spinner kembali ke 0 jika nilai kurang dari 0
+            }
+            updateTableFromSpinner("L005", spinnerCK);
+            updateCheckBoxFromSpinner(CKCbox, spinnerCK, "L005");  // Memperbarui checkbox sesuai dengan nilai spinner
         });
 
         // Menetapkan model spinner dengan validasi agar nilai tidak kurang dari 0
